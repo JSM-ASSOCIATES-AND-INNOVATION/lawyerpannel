@@ -10,9 +10,7 @@ export default function HeroSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[800px] md:h-[800px] bg-gray-100 dark:bg-white/[0.02] rounded-full blur-[80px] md:blur-[120px] opacity-50 pointer-events-none transition-colors duration-500"></div>
 
       {/* Center watermark logo on mobile */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] dark:opacity-[0.05] pointer-events-none md:hidden flex items-center justify-center w-[80%] z-0">
-         <img src={logo} alt="Lawyer Panel Logo Watermark" className="w-full h-auto dark:invert transition-all duration-300" />
-      </div>
+      
 
       <div className="max-w-[1440px] mx-auto w-full px-4 md:px-6 lg:px-12 flex-grow flex flex-col lg:flex-row items-center lg:items-start justify-center lg:justify-between gap-4 md:gap-16 lg:gap-8 mt-2 md:mt-12 lg:mt-24 relative z-10 h-full">
         
@@ -20,7 +18,7 @@ export default function HeroSection() {
         <div className="w-full lg:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl">
           
           {/* Mobile-only visible logo centered */}
-          <img src={logo} alt="Lawyer Panel" className="h-8 md:hidden mb-4 dark:invert transition-all duration-300" />
+          <img src={logo} alt="Lawyer Panel" className="h-8 md:hidden mb-4 transition-all duration-300" style={{ filter: "brightness(0) saturate(100%) invert(48%) sepia(87%) saturate(1478%) hue-rotate(113deg) brightness(97%) contrast(101%)" }} />
 
           <p className="text-gray-500 dark:text-gray-400 text-[10px] md:text-xs tracking-[0.2em] uppercase font-bold mb-2 md:mb-6 lg:mb-8 transition-colors">
             Legal Support for a Safer Tomorrow

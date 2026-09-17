@@ -1,3 +1,23 @@
+const fs = require('fs');
+const path = require('path');
+
+// 1. Hero Section fixes
+const heroPath = path.join(__dirname, 'src/features/Landing/components/HeroSection.jsx');
+let heroContent = fs.readFileSync(heroPath, 'utf8');
+
+// Remove watermark
+heroContent = heroContent.replace(/<div className="absolute top-1\/2 left-1\/2 -translate-x-1\/2 -translate-y-1\/2 opacity-\[0\.03\].*?<\/div>/s, '');
+// Make centered mobile logo green
+heroContent = heroContent.replace(
+  '<img src={logo} alt="Lawyer Panel" className="h-8 md:hidden mb-4 dark:invert transition-all duration-300" />',
+  '<img src={logo} alt="Lawyer Panel" className="h-8 md:hidden mb-4 transition-all duration-300" style={{ filter: "brightness(0) saturate(100%) invert(48%) sepia(87%) saturate(1478%) hue-rotate(113deg) brightness(97%) contrast(101%)" }} />'
+);
+
+fs.writeFileSync(heroPath, heroContent);
+
+// 2. About Section mobile fit + Featured In hover pop
+const aboutPath = path.join(__dirname, 'src/features/Landing/components/WhyUsSection.jsx');
+const aboutContent = `
 import React from 'react'
 import Button from '../../../shared/components/Button'
 import { Users, ShieldCheck, MapPin, Award, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -114,3 +134,7 @@ export default function WhyUsSection() {
     </section>
   )
 }
+`;
+fs.writeFileSync(aboutPath, aboutContent.trim());
+
+console.log("Hero and About mobile spacing fixed.");
