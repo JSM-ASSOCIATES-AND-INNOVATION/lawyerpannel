@@ -1,3 +1,9 @@
+const fs = require('fs');
+const path = require('path');
+
+const processPath = path.join(__dirname, 'src/features/HowItWorks/HowItWorksSection.jsx');
+
+const processContent = `
 import React, { useEffect, useState, useRef } from 'react'
 import { FileText, UserCheck, PhoneOff, Landmark, Handshake, ShieldCheck } from 'lucide-react'
 
@@ -115,8 +121,8 @@ export default function HowItWorksSection() {
             <div className="absolute left-[3px] top-2 bottom-2 w-[1px] bg-gray-200 dark:bg-white/10 z-0"></div>
             {steps.map((step) => (
               <div key={step.id} className="flex items-center gap-6 flex-1 relative z-10">
-                <div className={`w-[7px] h-[7px] rounded-full transition-all duration-500 ${activeStep === step.id ? 'bg-[#00b33c] scale-150' : 'bg-gray-300 dark:bg-white/20 scale-100'}`}></div>
-                <span className={`text-xs font-serif font-bold transition-all duration-500 ${activeStep === step.id ? 'text-[#00b33c]' : 'text-gray-400 dark:text-gray-600'}`}>
+                <div className={\`w-[7px] h-[7px] rounded-full transition-all duration-500 \${activeStep === step.id ? 'bg-[#00b33c] scale-150' : 'bg-gray-300 dark:bg-white/20 scale-100'}\`}></div>
+                <span className={\`text-xs font-serif font-bold transition-all duration-500 \${activeStep === step.id ? 'text-[#00b33c]' : 'text-gray-400 dark:text-gray-600'}\`}>
                   0{step.id}
                 </span>
               </div>
@@ -141,7 +147,7 @@ export default function HowItWorksSection() {
                 className="min-w-[85vw] md:w-full h-[50vh] md:min-h-[100dvh] snap-center flex flex-col justify-center pl-4 md:pl-20 py-0 transition-opacity duration-700"
                 style={{ opacity: isActive ? 1 : 0.4 }}
               >
-                <div className={`transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? 'scale-100 translate-y-0' : 'scale-[0.96] translate-y-4'}`}>
+                <div className={\`transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] \${isActive ? 'scale-100 translate-y-0' : 'scale-[0.96] translate-y-4'}\`}>
                   
                   <span className="text-6xl md:text-[120px] font-serif font-bold text-gray-100 dark:text-white/[0.03] leading-none block mb-6 md:mb-12">
                     0{step.id}
@@ -175,3 +181,8 @@ export default function HowItWorksSection() {
     </section>
   )
 }
+`;
+
+fs.writeFileSync(processPath, processContent.trim());
+
+console.log("HowItWorksSection syntax error fixed.");
