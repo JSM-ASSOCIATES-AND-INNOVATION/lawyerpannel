@@ -1,3 +1,8 @@
+const fs = require('fs');
+const path = require('path');
+
+const headerPath = path.join(__dirname, 'src/shared/layouts/Header.jsx');
+const headerContent = `
 import React, { useState, useEffect } from 'react'
 import logo from '../assets/logo.png'
 import Button from '../components/Button'
@@ -49,9 +54,9 @@ export default function Header() {
                 aria-label="Toggle Menu"
               >
                 <div className="w-6 flex flex-col gap-[5px]">
-                  <span className={`block h-[1.5px] w-full bg-current transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`}></span>
-                  <span className={`block h-[1.5px] w-full bg-current transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                  <span className={`block h-[1.5px] w-full bg-current transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`}></span>
+                  <span className={\`block h-[1.5px] w-full bg-current transition-all duration-300 \${isMenuOpen ? 'rotate-45 translate-y-[6.5px]' : ''}\`}></span>
+                  <span className={\`block h-[1.5px] w-full bg-current transition-all duration-300 \${isMenuOpen ? 'opacity-0' : ''}\`}></span>
+                  <span className={\`block h-[1.5px] w-full bg-current transition-all duration-300 \${isMenuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}\`}></span>
                 </div>
               </button>
             </div>
@@ -92,9 +97,9 @@ export default function Header() {
 
       {/* MOBILE FULL-SCREEN MENU */}
       <div 
-        className={`fixed inset-0 z-[90] bg-white dark:bg-[#0a0a0a] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={\`fixed inset-0 z-[90] bg-white dark:bg-[#0a0a0a] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] \${
           isMenuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-4'
-        }`}
+        }\`}
       >
         <div className="flex flex-col h-full pt-32 px-8 pb-12 overflow-y-auto">
           <nav className="flex flex-col gap-8 text-2xl font-serif italic text-gray-900 dark:text-white mb-12">
@@ -104,7 +109,7 @@ export default function Header() {
                 href={'#' + item.toLowerCase().replace(/ /g, '-')} 
                 onClick={() => setIsMenuOpen(false)} 
                 className="hover:text-[#00b33c] transition-colors flex items-center justify-between border-b border-gray-100 dark:border-white/5 pb-6"
-                style={{ transitionDelay: `${isMenuOpen ? idx * 50 : 0}ms` }}
+                style={{ transitionDelay: \`\${isMenuOpen ? idx * 50 : 0}ms\` }}
               >
                 <span>{item}</span>
                 <span className="text-sm font-sans not-italic text-gray-300 dark:text-gray-700">0{idx + 1}</span>
@@ -124,3 +129,7 @@ export default function Header() {
     </>
   )
 }
+`;
+fs.writeFileSync(headerPath, headerContent.trim());
+
+console.log("Header upgraded to ultimate luxury.");
