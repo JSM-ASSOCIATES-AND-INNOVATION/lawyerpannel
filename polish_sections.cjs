@@ -1,3 +1,8 @@
+const fs = require('fs');
+const path = require('path');
+
+const servicesPath = path.join(__dirname, 'src/features/Services/ServicesSection.jsx');
+const servicesContent = `
 import React from 'react'
 import { CreditCard, Landmark, PhoneOff, FileWarning, ArrowRight } from 'lucide-react'
 
@@ -58,3 +63,7 @@ export default function ServicesSection() {
     </section>
   )
 }
+`;
+fs.writeFileSync(servicesPath, servicesContent.trim());
+
+console.log("Services layout upgraded.");
