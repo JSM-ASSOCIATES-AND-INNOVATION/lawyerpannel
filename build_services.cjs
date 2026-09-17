@@ -1,3 +1,8 @@
+const fs = require('fs');
+const path = require('path');
+
+const sectionPath = path.join(__dirname, 'src/features/Services/ServicesSection.jsx');
+const sectionContent = `
 import React from 'react'
 import Button from '../../shared/components/Button'
 import { CreditCard, Landmark, PhoneOff, FileWarning, ArrowUpRight } from 'lucide-react'
@@ -140,3 +145,7 @@ export default function ServicesSection() {
     </section>
   )
 }
+`;
+fs.writeFileSync(sectionPath, sectionContent.trim());
+
+console.log("Services section upgraded.");
