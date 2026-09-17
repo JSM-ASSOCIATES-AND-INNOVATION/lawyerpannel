@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import Button from '../../shared/components/Button'
 import { CreditCard, Landmark, PhoneOff, FileWarning, ArrowUpRight } from 'lucide-react'
 
@@ -38,14 +38,35 @@ const extraServices = [
 ]
 
 export default function ServicesSection() {
+  
+  const scrollRef = useRef(null);
+  useEffect(() => {
+    let interval;
+    const startScroll = () => {
+      interval = setInterval(() => {
+        if (scrollRef.current && window.innerWidth < 1024) {
+          const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+          if (scrollRef.current.scrollLeft >= maxScroll - 10) {
+            scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            const cardWidth = scrollRef.current.children[0]?.clientWidth || 300;
+            scrollRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+          }
+        }
+      }, 3000);
+    };
+    startScroll();
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="services" className="relative w-full h-[100dvh] md:h-auto md:min-h-[100dvh] flex flex-col bg-white dark:bg-[#0a0a0a] transition-colors duration-500 border-t border-gray-200 dark:border-white/10">
+    <section id="services" className="relative w-full h-[100dvh] md:min-h-[100dvh] flex flex-col bg-white dark:bg-[#0a0a0a] transition-colors duration-500 border-t border-gray-200 dark:border-white/10">
       
       {/* Main Split Content */}
-      <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 flex-grow flex flex-col lg:flex-row relative z-10">
+      <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 flex-grow flex flex-col lg:flex-row relative z-10 h-full pt-20 lg:pt-0">
         
         {/* Left Panel (35%) */}
-        <div className="w-full lg:w-[35%] flex flex-col justify-between py-6 md:py-12 lg:py-24 pr-0 lg:pr-16 lg:border-r border-gray-200 dark:border-white/10 flex-shrink-0">
+        <div className="w-full lg:w-[35%] flex flex-col justify-center py-2 lg:py-24 pr-0 lg:pr-16 lg:border-r border-gray-200 dark:border-white/10 flex-shrink-0">
           
           <div className="flex flex-col items-start">
             <p className="text-gray-500 dark:text-gray-400 text-[10px] md:text-xs tracking-[0.2em] uppercase font-bold mb-6 lg:mb-8 transition-colors">
@@ -76,11 +97,11 @@ export default function ServicesSection() {
         </div>
 
         {/* Right Panel (65%) */}
-        <div className="w-full lg:w-[65%] grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 py-4 md:py-12 lg:py-24 lg:pl-12 overflow-y-auto flex-grow">
+        <div ref={scrollRef} className="w-full lg:w-[65%] flex lg:grid grid-flow-col lg:grid-cols-2 lg:grid-flow-row gap-4 lg:gap-8 py-4 lg:py-24 lg:pl-12 overflow-x-auto lg:overflow-visible snap-x snap-mandatory flex-grow items-center hide-scrollbar">
           {mainServices.map((srv) => {
             const Icon = srv.icon;
             return (
-              <div key={srv.id} className="group relative flex flex-col p-8 border border-gray-200 dark:border-white/10 bg-transparent hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-all duration-500 hover:scale-[1.02] cursor-pointer">
+              <div key={srv.id} className="group relative flex flex-col p-6 lg:p-8 min-w-[85vw] lg:min-w-0 h-[320px] lg:h-auto snap-center border border-gray-200 dark:border-white/10 bg-transparent hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-all duration-500 hover:scale-[1.02] cursor-pointer">
                 
                 <div className="flex justify-between items-start mb-16">
                   <div className="w-12 h-12 rounded-full border border-gray-200 dark:border-white/20 flex items-center justify-center text-gray-900 dark:text-white group-hover:border-[#00b33c] group-hover:text-[#00b33c] transition-colors duration-500">

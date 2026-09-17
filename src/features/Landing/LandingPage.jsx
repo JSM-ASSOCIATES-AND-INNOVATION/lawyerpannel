@@ -12,7 +12,7 @@ import CTABanner from './components/CTABanner'
 
 export default function LandingPage() {
   return (
-    <div className="w-full overflow-x-hidden bg-white dark:bg-[#232020] transition-colors duration-300">
+    <div className="w-full overflow-x-clip bg-white dark:bg-[#232020] transition-colors duration-300">
       <HeroSection />
       
       {/* Authority & Trust Band */}

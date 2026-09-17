@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import Button from '../../../shared/components/Button'
 import { CheckCircle2, Lock, MapPin, Search, Clock, Users, Scale } from 'lucide-react'
 
@@ -12,8 +12,29 @@ const features = [
 ]
 
 export default function WhyChooseUsSection() {
+  
+  const chooseRef = useRef(null);
+  useEffect(() => {
+    let interval;
+    const startScroll = () => {
+      interval = setInterval(() => {
+        if (chooseRef.current && window.innerWidth < 1024) {
+          const maxScroll = chooseRef.current.scrollWidth - chooseRef.current.clientWidth;
+          if (chooseRef.current.scrollLeft >= maxScroll - 10) {
+            chooseRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            const cardWidth = chooseRef.current.children[0]?.clientWidth || 300;
+            chooseRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+          }
+        }
+      }, 3000);
+    };
+    startScroll();
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="why-choose-us" className="relative w-full lg:h-[100dvh] flex flex-col lg:flex-row overflow-hidden border-t border-gray-200 dark:border-white/10">
+    <section id="why-choose-us" className="relative w-full h-[100dvh] lg:h-[100dvh] flex flex-col lg:flex-row overflow-hidden border-t border-gray-200 dark:border-white/10">
       
       {/* Center scales emblem (Desktop only) */}
       <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-[#F9F8F6] dark:bg-[#0a0a0a] rounded-full border border-gray-300 dark:border-white/20 items-center justify-center z-50 shadow-2xl transition-colors duration-500">
@@ -21,7 +42,7 @@ export default function WhyChooseUsSection() {
       </div>
 
       {/* LEFT PANEL (Light Ivory) */}
-      <div className="w-full lg:w-1/2 h-full bg-[#F9F8F6] flex flex-col justify-between p-8 lg:p-24 relative z-10 transition-colors duration-500">
+      <div className="w-full lg:w-1/2 h-[45%] lg:h-full bg-[#F9F8F6] flex flex-col justify-center lg:justify-between p-6 pt-24 lg:p-24 relative z-10 transition-colors duration-500">
         <div className="flex flex-col items-start max-w-lg">
           <p className="text-gray-500 text-[10px] md:text-xs tracking-[0.2em] uppercase font-bold mb-6 lg:mb-8">
             Why Lawyer Panel
@@ -36,7 +57,7 @@ export default function WhyChooseUsSection() {
           <Button variant="primary" className="uppercase tracking-widest text-xs !px-8 !py-4">Get Started Today</Button>
         </div>
 
-        <div className="flex flex-col gap-6 mt-16 lg:mt-0">
+        <div className="hidden lg:flex flex-col gap-6 mt-16 lg:mt-0">
           <div className="flex items-center gap-8 border-b border-gray-200 pb-6">
             {[
               { value: '50,000+', label: 'Individuals Assisted' },
@@ -56,12 +77,12 @@ export default function WhyChooseUsSection() {
       </div>
 
       {/* RIGHT PANEL (Dark Charcoal) */}
-      <div className="w-full lg:w-1/2 h-full bg-[#07111F] flex flex-col p-8 lg:p-24 relative z-10 transition-colors duration-500 border-t lg:border-t-0 lg:border-l border-white/10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-12 flex-grow">
+      <div className="w-full lg:w-1/2 h-[55%] lg:h-full bg-[#07111F] flex flex-col p-4 lg:p-24 relative z-10 transition-colors duration-500 border-t lg:border-t-0 lg:border-l border-white/10">
+        <div ref={chooseRef} className="flex lg:grid lg:grid-cols-2 gap-4 lg:gap-x-8 lg:gap-y-12 flex-grow overflow-x-auto lg:overflow-visible snap-x snap-mandatory items-center hide-scrollbar">
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <div key={feature.id} className="flex flex-col group">
+              <div key={feature.id} className="flex flex-col group min-w-[70vw] lg:min-w-0 snap-center px-4 lg:px-0">
                 <div className="flex items-center justify-between mb-6">
                   <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white group-hover:border-[#00b33c] group-hover:text-[#00b33c] transition-colors duration-300">
                     <Icon size={20} strokeWidth={1} />
@@ -88,7 +109,7 @@ export default function WhyChooseUsSection() {
           })}
         </div>
 
-        <div className="mt-16 text-center border-t border-white/10 pt-8">
+        <div className="hidden lg:block mt-16 text-center border-t border-white/10 pt-8">
           <p className="text-sm font-serif italic text-gray-400">
             Built on integrity. Driven by justice.
           </p>

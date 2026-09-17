@@ -48,7 +48,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   const [activeStep, setActiveStep] = useState(1);
-  const scrollRef = useRef(null);
+  const carouselRef = useRef(null);
   const stepRefs = useRef([]);
 
   useEffect(() => {
@@ -68,16 +68,37 @@ export default function HowItWorksSection() {
       if (ref) observer.observe(ref);
     });
 
-    return () => observer.disconnect();
+    
+  const carouselRef = useRef(null);
+  useEffect(() => {
+    let interval;
+    const startScroll = () => {
+      interval = setInterval(() => {
+        if (carouselRef.current && window.innerWidth < 1024) {
+          const maxScroll = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+          if (carouselRef.current.scrollLeft >= maxScroll - 10) {
+            carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            const cardWidth = carouselRef.current.children[0]?.clientWidth || 300;
+            carouselRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+          }
+        }
+      }, 3000);
+    };
+    startScroll();
+    return () => clearInterval(interval);
+  }, []);
+
+  return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="process" className="relative w-full h-[100dvh] md:h-auto bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-500 border-t border-gray-200 dark:border-white/10 overflow-hidden flex flex-col">
+    <section id="process" className="relative w-full h-[100dvh] md:min-h-screen bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-500 border-t border-gray-200 dark:border-white/10 flex flex-col">
       
       <div className="max-w-[1440px] mx-auto w-full px-6 lg:px-12 flex flex-col md:flex-row relative h-full">
         
         {/* Left Sticky Panel (42%) */}
-        <div className="w-full md:w-[42%] md:sticky md:top-0 flex-shrink-0 md:h-[100dvh] flex flex-col justify-center py-6 md:py-0 pr-0 md:pr-16 z-10 border-b md:border-b-0 md:border-r border-gray-200 dark:border-white/10 bg-white dark:bg-[#0a0a0a]">
+        <div className="w-full md:w-[42%] md:sticky md:top-0 flex-shrink-0 md:h-[100dvh] flex flex-col justify-center pt-24 md:py-0 pr-0 md:pr-16 z-10 md:border-r border-gray-200 dark:border-white/10 bg-white dark:bg-[#0a0a0a]">
           <p className="text-gray-500 dark:text-gray-400 text-[10px] md:text-xs tracking-[0.2em] uppercase font-bold mb-6 lg:mb-8">
             How It Works
           </p>
@@ -108,7 +129,7 @@ export default function HowItWorksSection() {
         </div>
 
         {/* Right Scroll Panel (58%) */}
-        <div className="w-full md:w-[58%] flex flex-col z-0 relative overflow-y-auto flex-grow">
+        <div ref={carouselRef} className="w-full md:w-[58%] flex flex-row md:flex-col z-0 relative overflow-x-auto md:overflow-visible snap-x snap-mandatory flex-grow hide-scrollbar">
           {steps.map((step, idx) => {
             const Icon = step.icon;
             const isActive = activeStep === step.id;
@@ -117,7 +138,7 @@ export default function HowItWorksSection() {
                 key={step.id} 
                 data-step={step.id}
                 ref={(el) => (stepRefs.current[idx] = el)}
-                className="w-full h-auto min-h-[40vh] md:min-h-[100dvh] snap-center flex flex-col justify-center pl-0 md:pl-20 py-8 md:py-0 transition-opacity duration-700"
+                className="min-w-[85vw] md:w-full h-[50vh] md:min-h-[100dvh] snap-center flex flex-col justify-center pl-4 md:pl-20 py-0 transition-opacity duration-700"
                 style={{ opacity: isActive ? 1 : 0.4 }}
               >
                 <div className={`transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? 'scale-100 translate-y-0' : 'scale-[0.96] translate-y-4'}`}>
