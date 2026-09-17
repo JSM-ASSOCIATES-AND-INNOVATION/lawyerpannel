@@ -1,3 +1,8 @@
+const fs = require('fs');
+const path = require('path');
+
+const heroPath = path.join(__dirname, 'src/features/Landing/components/HeroSection.jsx');
+const heroContent = `
 import React from 'react'
 import Button from '../../../shared/components/Button'
 import logo from '../../../assets/logo.png'
@@ -79,3 +84,7 @@ export default function HeroSection() {
     </section>
   )
 }
+`;
+fs.writeFileSync(heroPath, heroContent.trim());
+
+console.log("Hero Mobile spacing perfected.");
