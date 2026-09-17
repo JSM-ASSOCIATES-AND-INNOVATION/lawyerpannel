@@ -42,9 +42,11 @@ export default function ServicesSection() {
   const scrollRef = useRef(null);
   useEffect(() => {
     let interval;
+    let isInteracting = false;
+
     const startScroll = () => {
       interval = setInterval(() => {
-        if (scrollRef.current && window.innerWidth < 1024) {
+        if (!isInteracting && scrollRef.current && window.innerWidth < 1024) {
           const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
           if (scrollRef.current.scrollLeft >= maxScroll - 10) {
             scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
@@ -53,10 +55,35 @@ export default function ServicesSection() {
             scrollRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
           }
         }
-      }, 3000);
+      }, 3500);
     };
+
     startScroll();
-    return () => clearInterval(interval);
+
+    const handleInteractionStart = () => { isInteracting = true; };
+    const handleInteractionEnd = () => { 
+      isInteracting = false; 
+      clearInterval(interval);
+      startScroll();
+    };
+
+    const el = scrollRef.current;
+    if (el) {
+      el.addEventListener('touchstart', handleInteractionStart, {passive: true});
+      el.addEventListener('touchend', handleInteractionEnd, {passive: true});
+      el.addEventListener('mouseenter', handleInteractionStart);
+      el.addEventListener('mouseleave', handleInteractionEnd);
+    }
+
+    return () => {
+      clearInterval(interval);
+      if (el) {
+        el.removeEventListener('touchstart', handleInteractionStart);
+        el.removeEventListener('touchend', handleInteractionEnd);
+        el.removeEventListener('mouseenter', handleInteractionStart);
+        el.removeEventListener('mouseleave', handleInteractionEnd);
+      }
+    };
   }, []);
 
   return (

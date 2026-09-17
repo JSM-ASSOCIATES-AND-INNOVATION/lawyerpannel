@@ -49,35 +49,13 @@ const steps = [
 export default function HowItWorksSection() {
   const [activeStep, setActiveStep] = useState(1);
   const carouselRef = useRef(null);
-  const stepRefs = useRef([]);
-
-  // Desktop Scroll Observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const stepId = Number(entry.target.getAttribute('data-step'));
-            setActiveStep(stepId);
-          }
-        });
-      },
-      { rootMargin: '-50% 0px -50% 0px' }
-    );
-
-    stepRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Mobile Auto-Scroll
   useEffect(() => {
     let interval;
+    let isInteracting = false;
+
     const startScroll = () => {
       interval = setInterval(() => {
-        if (carouselRef.current && window.innerWidth < 1024) {
+        if (!isInteracting && carouselRef.current && window.innerWidth < 1024) {
           const maxScroll = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
           if (carouselRef.current.scrollLeft >= maxScroll - 10) {
             carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
@@ -86,10 +64,35 @@ export default function HowItWorksSection() {
             carouselRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
           }
         }
-      }, 3000);
+      }, 3500);
     };
+
     startScroll();
-    return () => clearInterval(interval);
+
+    const handleInteractionStart = () => { isInteracting = true; };
+    const handleInteractionEnd = () => { 
+      isInteracting = false; 
+      clearInterval(interval);
+      startScroll();
+    };
+
+    const el = carouselRef.current;
+    if (el) {
+      el.addEventListener('touchstart', handleInteractionStart, {passive: true});
+      el.addEventListener('touchend', handleInteractionEnd, {passive: true});
+      el.addEventListener('mouseenter', handleInteractionStart);
+      el.addEventListener('mouseleave', handleInteractionEnd);
+    }
+
+    return () => {
+      clearInterval(interval);
+      if (el) {
+        el.removeEventListener('touchstart', handleInteractionStart);
+        el.removeEventListener('touchend', handleInteractionEnd);
+        el.removeEventListener('mouseenter', handleInteractionStart);
+        el.removeEventListener('mouseleave', handleInteractionEnd);
+      }
+    };
   }, []);
 
   return (
