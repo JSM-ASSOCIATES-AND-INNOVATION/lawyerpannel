@@ -120,7 +120,7 @@ export default function HowItWorksSection() {
   }, []);
 
   return (
-    <section id="process" className="relative w-full h-[100dvh] md:min-h-screen bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-500 border-t border-gray-200 dark:border-white/10 flex flex-col">
+    <section id="process" className="relative w-full h-[100dvh] md:h-auto bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-500 border-t border-gray-200 dark:border-white/10 flex flex-col">
       
       <div className="max-w-[1440px] mx-auto w-full px-6 lg:px-12 flex flex-col md:flex-row relative h-full">
         

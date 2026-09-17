@@ -87,7 +87,7 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" className="relative w-full h-[100dvh] md:min-h-[100dvh] flex flex-col bg-white dark:bg-[#0a0a0a] transition-colors duration-500 border-t border-gray-200 dark:border-white/10">
+    <section id="services" className="relative w-full h-[100dvh] md:h-auto md:min-h-[100dvh] flex flex-col bg-white dark:bg-[#0a0a0a] transition-colors duration-500 border-t border-gray-200 dark:border-white/10">
       
       {/* Main Split Content */}
       <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 flex-grow flex flex-col lg:flex-row relative z-10 h-full pt-20 lg:pt-0">
