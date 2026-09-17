@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../../../shared/components/Button'
-import logo from '../../../assets/logo.png'
+import logo from '../../../shared/assets/logo.png'
 
 export default function HeroSection() {
   return (
