@@ -39,13 +39,13 @@ const extraServices = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="relative w-full min-h-[100dvh] flex flex-col bg-white dark:bg-[#0a0a0a] transition-colors duration-500 border-t border-gray-200 dark:border-white/10">
+    <section id="services" className="relative w-full h-[100dvh] md:h-auto md:min-h-[100dvh] flex flex-col bg-white dark:bg-[#0a0a0a] transition-colors duration-500 border-t border-gray-200 dark:border-white/10">
       
       {/* Main Split Content */}
       <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 flex-grow flex flex-col lg:flex-row relative z-10">
         
         {/* Left Panel (35%) */}
-        <div className="w-full lg:w-[35%] flex flex-col justify-between py-12 lg:py-24 pr-0 lg:pr-16 lg:border-r border-gray-200 dark:border-white/10">
+        <div className="w-full lg:w-[35%] flex flex-col justify-between py-6 md:py-12 lg:py-24 pr-0 lg:pr-16 lg:border-r border-gray-200 dark:border-white/10 flex-shrink-0">
           
           <div className="flex flex-col items-start">
             <p className="text-gray-500 dark:text-gray-400 text-[10px] md:text-xs tracking-[0.2em] uppercase font-bold mb-6 lg:mb-8 transition-colors">
@@ -76,7 +76,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Right Panel (65%) */}
-        <div className="w-full lg:w-[65%] grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 py-12 lg:py-24 lg:pl-12">
+        <div className="w-full lg:w-[65%] grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 py-4 md:py-12 lg:py-24 lg:pl-12 overflow-y-auto flex-grow">
           {mainServices.map((srv) => {
             const Icon = srv.icon;
             return (

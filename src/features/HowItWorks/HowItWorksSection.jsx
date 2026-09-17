@@ -72,12 +72,12 @@ export default function HowItWorksSection() {
   }, []);
 
   return (
-    <section id="process" className="relative w-full bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-500 border-t border-gray-200 dark:border-white/10">
+    <section id="process" className="relative w-full h-[100dvh] md:h-auto bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-500 border-t border-gray-200 dark:border-white/10 overflow-hidden flex flex-col">
       
-      <div className="max-w-[1440px] mx-auto w-full px-6 lg:px-12 flex flex-col md:flex-row relative">
+      <div className="max-w-[1440px] mx-auto w-full px-6 lg:px-12 flex flex-col md:flex-row relative h-full">
         
         {/* Left Sticky Panel (42%) */}
-        <div className="w-full md:w-[42%] md:sticky md:top-0 h-auto md:h-[100dvh] flex flex-col justify-center py-12 md:py-0 pr-0 md:pr-16 z-10 border-b md:border-b-0 md:border-r border-gray-200 dark:border-white/10 bg-white dark:bg-[#0a0a0a]">
+        <div className="w-full md:w-[42%] md:sticky md:top-0 flex-shrink-0 md:h-[100dvh] flex flex-col justify-center py-6 md:py-0 pr-0 md:pr-16 z-10 border-b md:border-b-0 md:border-r border-gray-200 dark:border-white/10 bg-white dark:bg-[#0a0a0a]">
           <p className="text-gray-500 dark:text-gray-400 text-[10px] md:text-xs tracking-[0.2em] uppercase font-bold mb-6 lg:mb-8">
             How It Works
           </p>
@@ -108,7 +108,7 @@ export default function HowItWorksSection() {
         </div>
 
         {/* Right Scroll Panel (58%) */}
-        <div className="w-full md:w-[58%] flex flex-col z-0 relative">
+        <div className="w-full md:w-[58%] flex flex-col z-0 relative overflow-y-auto flex-grow">
           {steps.map((step, idx) => {
             const Icon = step.icon;
             const isActive = activeStep === step.id;
@@ -117,7 +117,7 @@ export default function HowItWorksSection() {
                 key={step.id} 
                 data-step={step.id}
                 ref={(el) => (stepRefs.current[idx] = el)}
-                className="w-full h-auto min-h-[50vh] md:min-h-[100dvh] snap-center flex flex-col justify-center pl-0 md:pl-20 py-16 md:py-0 transition-opacity duration-700"
+                className="w-full h-auto min-h-[40vh] md:min-h-[100dvh] snap-center flex flex-col justify-center pl-0 md:pl-20 py-8 md:py-0 transition-opacity duration-700"
                 style={{ opacity: isActive ? 1 : 0.4 }}
               >
                 <div className={`transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? 'scale-100 translate-y-0' : 'scale-[0.96] translate-y-4'}`}>

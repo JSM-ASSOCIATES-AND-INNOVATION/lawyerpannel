@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection'
 import WhyUsSection from './components/WhyUsSection'
 import ServicesSection from '../Services/ServicesSection'
 import HowItWorksSection from '../HowItWorks/HowItWorksSection'
+import WhyChooseUsSection from './components/WhyChooseUsSection'
 import AdvocateSection from '../Advocates/AdvocateSection'
 import TestimonialSection from '../Testimonials/TestimonialSection'
 import FAQSection from '../FAQ/FAQSection'
@@ -23,6 +24,7 @@ export default function LandingPage() {
       <WhyUsSection />
       <ServicesSection />
       <HowItWorksSection />
+      <WhyChooseUsSection />
       
       {/* Social Proof & Team */}
       <AdvocateSection />
