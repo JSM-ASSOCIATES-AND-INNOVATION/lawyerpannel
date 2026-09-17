@@ -109,7 +109,7 @@ export default function WhyChooseUsSection() {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <div key={feature.id} className="flex flex-col group min-w-[70vw] lg:min-w-0 snap-center px-4 lg:px-0">
+              <div key={feature.id} className="flex flex-col group shrink-0 min-w-[70vw] lg:min-w-0 snap-center px-4 lg:px-0">
                 <div className="flex items-center justify-between mb-6">
                   <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white group-hover:border-[#00b33c] group-hover:text-[#00b33c] transition-colors duration-300">
                     <Icon size={20} strokeWidth={1} />

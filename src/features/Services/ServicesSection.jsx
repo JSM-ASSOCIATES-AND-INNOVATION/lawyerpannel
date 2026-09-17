@@ -128,7 +128,7 @@ export default function ServicesSection() {
           {mainServices.map((srv) => {
             const Icon = srv.icon;
             return (
-              <div key={srv.id} className="group relative flex flex-col p-6 lg:p-8 min-w-[85vw] lg:min-w-0 h-[320px] lg:h-auto snap-center border border-gray-200 dark:border-white/10 bg-transparent hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-all duration-500 hover:scale-[1.02] cursor-pointer">
+              <div key={srv.id} className="group relative flex flex-col p-6 lg:p-8 shrink-0 min-w-[85vw] lg:min-w-0 h-[320px] lg:h-auto snap-center border border-gray-200 dark:border-white/10 bg-transparent hover:bg-gray-50 dark:hover:bg-white/[0.02] transition-all duration-500 hover:scale-[1.02] cursor-pointer">
                 
                 <div className="flex justify-between items-start mb-16">
                   <div className="w-12 h-12 rounded-full border border-gray-200 dark:border-white/20 flex items-center justify-center text-gray-900 dark:text-white group-hover:border-[#00b33c] group-hover:text-[#00b33c] transition-colors duration-500">

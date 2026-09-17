@@ -141,7 +141,7 @@ export default function HowItWorksSection() {
                 key={step.id} 
                 data-step={step.id}
                 ref={(el) => (stepRefs.current[idx] = el)}
-                className="min-w-[85vw] md:w-full h-[50vh] md:min-h-[100dvh] snap-center flex flex-col justify-center pl-4 md:pl-20 py-0 transition-opacity duration-700"
+                className="shrink-0 min-w-[85vw] md:w-full h-[50vh] md:min-h-[100dvh] snap-center flex flex-col justify-center pl-4 md:pl-20 py-0 transition-opacity duration-700"
                 style={{ opacity: isActive ? 1 : 0.4 }}
               >
                 <div className={`transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? 'scale-100 translate-y-0' : 'scale-[0.96] translate-y-4'}`}>
