@@ -1,3 +1,9 @@
+const fs = require('fs');
+const path = require('path');
+
+// 1. Build the ultra-premium About + Featured In combo section
+const aboutPath = path.join(__dirname, 'src/features/Landing/components/WhyUsSection.jsx');
+const aboutContent = `
 import React from 'react'
 import Button from '../../../shared/components/Button'
 import { Users, ShieldCheck, MapPin, Award, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -124,3 +130,16 @@ export default function WhyUsSection() {
     </section>
   )
 }
+`;
+fs.writeFileSync(aboutPath, aboutContent.trim());
+
+// 2. Remove FeaturedInSection from LandingPage (it's now integrated)
+const landingPath = path.join(__dirname, 'src/features/Landing/LandingPage.jsx');
+let landingContent = fs.readFileSync(landingPath, 'utf8');
+landingContent = landingContent.replace("import FeaturedInSection from './components/FeaturedInSection'\n", "");
+landingContent = landingContent.replace("<FeaturedInSection />\n", "");
+// Since I also removed StatsBar earlier, the top div in LandingPage is just <HeroSection /> then <WhyUsSection />
+// Let's just make sure there are no floating tags from earlier if any.
+fs.writeFileSync(landingPath, landingContent);
+
+console.log("Ultra-premium About + Featured In section created.");

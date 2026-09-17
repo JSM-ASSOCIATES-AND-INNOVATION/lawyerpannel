@@ -1,6 +1,5 @@
 import React from 'react'
 import HeroSection from './components/HeroSection'
-import FeaturedInSection from './components/FeaturedInSection'
 
 import WhyUsSection from './components/WhyUsSection'
 import ServicesSection from '../Services/ServicesSection'
@@ -17,8 +16,7 @@ export default function LandingPage() {
       
       {/* Authority & Trust Band */}
       <div className="flex flex-col w-full relative z-10 shadow-2xl">
-        <FeaturedInSection />
-        
+                
       </div>
 
       {/* Main Content Flow */}
