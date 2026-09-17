@@ -11,8 +11,8 @@ const features = [
 
 export default function WhyUsSection() {
   return (
-    <section id="about" className="relative w-full min-h-[100dvh] h-auto lg:min-h-[100dvh] flex flex-col justify-center py-16 lg:py-32 bg-white dark:bg-[#0a0a0a] transition-colors duration-500 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 flex flex-col gap-6 lg:gap-24 relative z-10 h-full">
+    <section id="about" className="relative w-full h-[100dvh] flex flex-col justify-center py-12 lg:py-16 bg-white dark:bg-[#0a0a0a] transition-colors duration-500 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 flex flex-col gap-4 lg:gap-12 relative z-10 h-full">
         
         {/* Top Row */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch flex-grow">

@@ -1,3 +1,9 @@
+const fs = require('fs');
+const path = require('path');
+
+const processPath = path.join(__dirname, 'src/features/HowItWorks/HowItWorksSection.jsx');
+
+const newContent = `
 import React, { useState, useEffect } from 'react'
 import { FileText, UserCheck, PhoneOff, Landmark, Handshake, ShieldCheck } from 'lucide-react'
 
@@ -44,13 +50,13 @@ export default function HowItWorksSection() {
               <button 
                 key={step.id}
                 onClick={() => setActiveStep(step.id)}
-                className={`flex items-center justify-between w-full p-4 border-l-2 transition-all duration-300 text-left ${activeStep === step.id ? 'border-[#00b33c] bg-gray-50 dark:bg-white/[0.02]' : 'border-transparent hover:bg-gray-50/50 dark:hover:bg-white/[0.01]'}`}
+                className={\`flex items-center justify-between w-full p-4 border-l-2 transition-all duration-300 text-left \${activeStep === step.id ? 'border-[#00b33c] bg-gray-50 dark:bg-white/[0.02]' : 'border-transparent hover:bg-gray-50/50 dark:hover:bg-white/[0.01]'}\`}
               >
                 <div className="flex items-center gap-4">
-                  <span className={`text-xs font-serif italic ${activeStep === step.id ? 'text-[#00b33c]' : 'text-gray-400'}`}>
+                  <span className={\`text-xs font-serif italic \${activeStep === step.id ? 'text-[#00b33c]' : 'text-gray-400'}\`}>
                     0{step.id}
                   </span>
-                  <span className={`text-sm font-bold tracking-wide ${activeStep === step.id ? 'text-gray-900 dark:text-white' : 'text-gray-500'}`}>
+                  <span className={\`text-sm font-bold tracking-wide \${activeStep === step.id ? 'text-gray-900 dark:text-white' : 'text-gray-500'}\`}>
                     {step.title}
                   </span>
                 </div>
@@ -64,7 +70,7 @@ export default function HowItWorksSection() {
                 <button 
                   key={step.id}
                   onClick={() => setActiveStep(step.id)}
-                  className={`shrink-0 snap-center px-4 py-2 rounded-full border text-[10px] uppercase tracking-widest font-bold transition-colors duration-300 ${activeStep === step.id ? 'border-[#00b33c] bg-[#00b33c]/10 text-[#00b33c]' : 'border-gray-200 dark:border-white/10 text-gray-500'}`}
+                  className={\`shrink-0 snap-center px-4 py-2 rounded-full border text-[10px] uppercase tracking-widest font-bold transition-colors duration-300 \${activeStep === step.id ? 'border-[#00b33c] bg-[#00b33c]/10 text-[#00b33c]' : 'border-gray-200 dark:border-white/10 text-gray-500'}\`}
                 >
                   {step.title}
                 </button>
@@ -108,3 +114,24 @@ export default function HowItWorksSection() {
     </section>
   )
 }
+`;
+
+fs.writeFileSync(processPath, newContent.trim());
+
+// Add fade animation to index.css if not there
+const cssPath = path.join(__dirname, 'src/index.css');
+let cssContent = fs.readFileSync(cssPath, 'utf8');
+if (!cssContent.includes('animate-fade-in-up')) {
+  cssContent += `
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+`;
+  fs.writeFileSync(cssPath, cssContent);
+}
+
+console.log("Rewrote HowItWorks for a pure single slide interactive layout.");
