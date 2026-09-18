@@ -87,7 +87,7 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" className="relative w-full h-[100dvh] flex flex-col overflow-hidden bg-white dark:bg-[#0a0a0a] transition-colors duration-500 border-t border-gray-200 dark:border-white/10">
+    <section id="services" className="relative w-full min-h-[100dvh] h-auto flex flex-col justify-center bg-white dark:bg-[#0a0a0a] py-12 lg:py-0 transition-colors duration-500 border-t border-gray-200 dark:border-white/10">
       
       {/* Main Split Content */}
       <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 flex-grow flex flex-col lg:flex-row relative z-10 h-full pt-20 lg:pt-0">
@@ -161,30 +161,6 @@ export default function ServicesSection() {
 
       </div>
 
-      {/* Footer Strip */}
-      <div className="w-full border-t border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#0a0a0a]">
-        <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 py-4 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
-          
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 md:gap-6 justify-center md:justify-start">
-            {extraServices.map((s, idx) => (
-              <React.Fragment key={idx}>
-                <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 hover:text-[#00b33c] dark:hover:text-[#00b33c] transition-colors cursor-pointer">
-                  {s}
-                </span>
-                {idx !== extraServices.length - 1 && (
-                  <span className="hidden md:block w-px h-3 bg-gray-300 dark:bg-white/20"></span>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-
-          <div className="text-[10px] md:text-[11px] font-serif italic text-gray-900 dark:text-white tracking-wide flex-shrink-0">
-            A Financially Safer Tomorrow.
-          </div>
-
-        </div>
-      </div>
-
-    </section>
+      </section>
   )
 }

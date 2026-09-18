@@ -25,7 +25,7 @@ export default function HowItWorksSection() {
   const ActiveIcon = activeData.icon;
 
   return (
-    <section id="process" className="relative w-full h-[100dvh] bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-500 border-t border-gray-200 dark:border-white/10 overflow-hidden flex flex-col pt-16 md:pt-20 lg:pt-0">
+    <section id="process" className="relative w-full min-h-[100dvh] h-auto flex flex-col justify-center py-16 lg:py-20 bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-500 border-t border-gray-200 dark:border-white/10 flex flex-col pt-16 md:pt-20 lg:pt-0">
       
       <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 flex flex-col lg:flex-row relative h-full">
         

@@ -11,7 +11,7 @@ const features = [
 
 export default function WhyUsSection() {
   return (
-    <section id="about" className="relative w-full h-[100dvh] flex flex-col justify-center py-12 lg:py-16 bg-white dark:bg-[#0a0a0a] transition-colors duration-500 overflow-hidden">
+    <section id="about" className="relative w-full min-h-[100dvh] h-auto flex flex-col justify-center py-16 lg:py-20 bg-white dark:bg-[#0a0a0a] transition-colors duration-500 overflow-hidden">
       <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 flex flex-col gap-4 lg:gap-12 relative z-10 h-full">
         
         {/* Top Row */}
@@ -104,11 +104,7 @@ export default function WhyUsSection() {
           </div>
         </div>
 
-        {/* Bottom Signature */}
-        <div className="hidden lg:flex flex-col sm:flex-row items-center justify-between border-t border-gray-200 dark:border-white/10 pt-8 gap-4 mt-auto">
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">TRUSTED · TRANSPARENT · PEOPLE FIRST</span>
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#00b33c]">YOUR RIGHTS. OUR SUPPORT.</span>
-        </div>
+        
 
       </div>
     </section>

@@ -61,7 +61,7 @@ export default function WhyChooseUsSection() {
   }, []);
 
   return (
-    <section id="why-choose-us" className="relative w-full h-[100dvh] lg:h-[100dvh] flex flex-col lg:flex-row overflow-hidden border-t border-gray-200 dark:border-white/10">
+    <section id="why-choose-us" className="relative w-full min-h-[100dvh] h-auto flex flex-col lg:flex-row border-t border-gray-200 dark:border-white/10">
       
       {/* Center scales emblem (Desktop only) */}
       <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-[#F9F8F6] dark:bg-[#0a0a0a] rounded-full border border-gray-300 dark:border-white/20 items-center justify-center z-50 shadow-2xl transition-colors duration-500">
@@ -69,7 +69,7 @@ export default function WhyChooseUsSection() {
       </div>
 
       {/* LEFT PANEL (Light Ivory) */}
-      <div className="w-full lg:w-1/2 h-[45%] lg:h-full bg-[#F9F8F6] flex flex-col justify-center lg:justify-between p-6 pt-24 lg:p-24 relative z-10 transition-colors duration-500">
+      <div className="w-full lg:w-1/2 flex-1 lg:h-auto min-h-[50vh] lg:min-h-[100dvh] bg-[#F9F8F6] flex flex-col justify-center lg:justify-between p-6 pt-24 lg:p-24 relative z-10 transition-colors duration-500">
         <div className="flex flex-col items-start max-w-lg">
           <p className="text-gray-500 text-[10px] md:text-xs tracking-[0.2em] uppercase font-bold mb-6 lg:mb-8">
             Why Lawyer Panel
@@ -104,7 +104,7 @@ export default function WhyChooseUsSection() {
       </div>
 
       {/* RIGHT PANEL (Dark Charcoal) */}
-      <div className="w-full lg:w-1/2 h-[55%] lg:h-full bg-[#07111F] flex flex-col p-4 lg:p-24 relative z-10 transition-colors duration-500 border-t lg:border-t-0 lg:border-l border-white/10">
+      <div className="w-full lg:w-1/2 flex-1 lg:h-auto min-h-[50vh] lg:min-h-[100dvh] bg-[#07111F] flex flex-col p-4 lg:p-24 relative z-10 transition-colors duration-500 border-t lg:border-t-0 lg:border-l border-white/10">
         <div ref={chooseRef} className="flex lg:grid lg:grid-cols-2 gap-4 lg:gap-x-8 lg:gap-y-12 flex-grow overflow-x-auto lg:overflow-visible snap-x snap-mandatory items-center hide-scrollbar">
           {features.map((feature) => {
             const Icon = feature.icon;
@@ -136,11 +136,7 @@ export default function WhyChooseUsSection() {
           })}
         </div>
 
-        <div className="hidden lg:block mt-16 text-center border-t border-white/10 pt-8">
-          <p className="text-sm font-serif italic text-gray-400">
-            Built on integrity. Driven by justice.
-          </p>
-        </div>
+        
       </div>
 
     </section>
