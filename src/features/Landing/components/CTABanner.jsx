@@ -3,19 +3,31 @@ import Button from '../../../shared/components/Button'
 
 export default function CTABanner() {
   return (
-    <section className="snap-section">
-      <div className="max-w-6xl mx-auto px-6 w-full flex flex-col md:flex-row items-center justify-between gap-12 bg-gradient-to-br from-secondary to-dark p-12 md:p-24 rounded-[3rem] border border-white/20 shadow-2xl relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/20 backdrop-blur-3xl pointer-events-none mix-blend-overlay"></div>
+    <section className="relative w-full py-16 lg:py-32 bg-[#00b33c] transition-colors duration-500 border-t border-gray-200 dark:border-white/10 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto w-full px-4 lg:px-12 flex flex-col lg:flex-row items-center justify-between relative h-full gap-10 lg:gap-0">
         
-        <div className="text-center md:text-left relative z-10 w-full md:w-3/5">
-          <h2 className="text-5xl md:text-6xl font-heading font-extrabold text-white tracking-tight mb-8 leading-tight">Get Expert Legal Support Today</h2>
-          <p className="text-gray-200 text-2xl font-light">Talk to our team and understand your options. Your consultation is completely confidential.</p>
+        <div className="w-full lg:w-[50%] flex flex-col items-center lg:items-start text-center lg:text-left">
+          <p className="text-white/80 text-[10px] md:text-xs tracking-[0.2em] uppercase font-bold mb-4">
+            Take Control
+          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-[64px] font-serif leading-[1.05] text-white tracking-tight mb-6">
+            Get Expert Legal <br className="hidden lg:block"/>
+            Support Today.
+          </h2>
+          <p className="text-white/90 text-sm lg:text-lg font-light max-w-md">
+            Talk to our team and understand your options. Your consultation is completely confidential.
+          </p>
         </div>
-        
-        <div className="flex flex-col gap-6 w-full md:w-auto relative z-10">
-          <Button variant="primary" className="py-5 px-12 text-xl w-full justify-center">Talk to an Expert</Button>
-          <Button variant="outline" className="py-5 px-12 text-xl w-full justify-center border-white/30 text-white hover:bg-white/10 backdrop-blur-md">Chat on WhatsApp</Button>
+
+        <div className="w-full lg:w-[40%] flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
+          <button className="px-8 py-4 bg-white text-[#00b33c] text-xs font-bold uppercase tracking-widest hover:bg-gray-100 transition-colors">
+            Talk to an Expert
+          </button>
+          <button className="px-8 py-4 bg-transparent border border-white text-white text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-colors">
+            Chat on WhatsApp
+          </button>
         </div>
+
       </div>
     </section>
   )
