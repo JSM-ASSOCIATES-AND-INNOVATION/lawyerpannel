@@ -14,11 +14,6 @@ export default function LandingPage() {
   return (
     <div className="w-full overflow-x-clip bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
       <HeroSection />
-      
-      {/* Authority & Trust Band */}
-      <div className="flex flex-col w-full relative z-10 shadow-2xl">
-                
-      </div>
 
       {/* Main Content Flow */}
       <WhyUsSection />
