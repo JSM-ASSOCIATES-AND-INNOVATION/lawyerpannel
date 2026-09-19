@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../../../shared/components/Button'
+import LogoLoop from '../../../shared/components/LogoLoop'
 import { Users, ShieldCheck, MapPin, Award, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const features = [
@@ -8,6 +9,16 @@ const features = [
   { icon: MapPin, title: 'Pan-India', desc: 'Resolving issues nationwide.' },
   { icon: Award, title: 'Expertise', desc: 'Vetted financial advocates.' },
 ]
+
+
+const featuredLogos = ['INDIA TODAY', 'BUSINESS NEWS WEEK', 'NEWS KARNATAKA', 'WHALESBOOK', 'THE HINDU'].map(pub => ({
+  node: (
+    <span className="text-sm md:text-2xl font-serif font-bold text-gray-300 dark:text-gray-800 tracking-wider hover:text-gray-900 dark:hover:text-white transition-colors duration-300 cursor-default">
+      {pub}
+    </span>
+  ),
+  title: pub
+}));
 
 export default function WhyUsSection() {
   return (
@@ -83,28 +94,18 @@ export default function WhyUsSection() {
           </div>
           
           <div className="w-full lg:w-[70%] flex flex-col">
-            <div className="relative flex items-center overflow-hidden mb-2 lg:mb-6">
-              <div className="flex items-center gap-12 md:gap-24 animate-marquee hover:[animation-play-state:paused] whitespace-nowrap py-2">
-                 {['INDIA TODAY', 'BUSINESS NEWS WEEK', 'NEWS KARNATAKA', 'WHALESBOOK', 'THE HINDU'].map((pub, i) => (
-                    <span key={i} className="text-sm md:text-2xl font-serif font-bold text-gray-300 dark:text-gray-800 tracking-wider hover:text-gray-900 dark:hover:text-white hover:-translate-y-1 hover:scale-105 transition-all duration-300 cursor-default shadow-sm">
-                      {pub}
-                    </span>
-                 ))}
-                 {['INDIA TODAY', 'BUSINESS NEWS WEEK', 'NEWS KARNATAKA', 'WHALESBOOK', 'THE HINDU'].map((pub, i) => (
-                    <span key={i + 'dup'} className="text-sm md:text-2xl font-serif font-bold text-gray-300 dark:text-gray-800 tracking-wider hover:text-gray-900 dark:hover:text-white hover:-translate-y-1 hover:scale-105 transition-all duration-300 cursor-default shadow-sm">
-                      {pub}
-                    </span>
-                 ))}
-              </div>
-              
-              {/* Gradient Masks */}
-              <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-white dark:from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
-              <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-white dark:from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
+            <div className="relative w-full overflow-hidden mb-2 lg:mb-6 flex items-center h-[60px]">
+              <LogoLoop 
+                logos={featuredLogos} 
+                speed={60} 
+                direction="left" 
+                gap={64} 
+                fadeOut 
+                hoverSpeed={0}
+              />
             </div>
           </div>
         </div>
-
-        
 
       </div>
     </section>
